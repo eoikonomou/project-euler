@@ -5,26 +5,27 @@
 
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 */
+
+function gcd(num1, num2) {
+  if (num2 === 0) {
+    return num1;
+  }
+  return gcd(num2, num1 % num2);
+}
+
 function smallestMultiple(start, end) {
   const startTime = Date.now();
   const divisors = [];
   for (let i = start; i <= end; i++) {
     divisors.push(i);
   }
-
-  let result = divisors[divisors.length - 1];
-  while (divisors.length > 0) {
-    if (divisors.every(divisor => result % divisor === 0)) {
-      console.log(`Solved in ${((Date.now() - startTime) / 1000).toFixed(2)}s`);
-      return result;
-    }
-    if (result % 2 > 0) {
-      result++;
-    } else {
-      result += end;
-    }
+  let lcm = divisors[0];
+  for (let i = 1; i < end; i++) {
+    lcm = divisors[i] * lcm / gcd(divisors[i], lcm);
   }
+  console.log(`Solved in ${((Date.now() - startTime) / 1000).toFixed(2)}s`);
+  return lcm;
 }
 
 // console.log(smallestMultiple(1, 10)); //2520
-console.log(smallestMultiple(1, 20));
+console.log(smallestMultiple(1, 20)); // 232792560
