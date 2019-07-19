@@ -19,6 +19,10 @@ function isPrime(number) {
 }
 
 function nextPrime(number) {
+  if (number === 1) {
+    return 2;
+  }
+
   if (number === 2) {
     return 3;
   }
@@ -42,4 +46,9 @@ function findNthPrime(n) {
 }
 
 // console.log(findNthPrime(6)); // 13
-console.log(findNthPrime(10001)); // 104743
+// console.log(findNthPrime(10001)); // 104743
+
+module.exports = {
+  isPrime,
+  nextPrime,
+};
