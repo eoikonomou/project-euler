@@ -1,0 +1,22 @@
+{
+  "name": "project-euler",
+  "version": "1.0.0",
+  "description": "Solutions to project-euler.net problems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eusoikonomou/project-euler.git"
+  },
+  "author": "Efstathios Oikonomou <eusoikonomou@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eusoikonomou/project-euler/issues"
+  },
+  "homepage": "https://github.com/eusoikonomou/project-euler#readme",
+  "dependencies": {
+    "big-integer": "^1.6.44"
+  }
+}

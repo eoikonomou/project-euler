@@ -10,6 +10,7 @@ function latticePaths(n) {
   const now = Date.now();
   let paths = 1;
   for (let i = 0; i < n; i++) {
+    // (n k) = n(n-1)(n-2)(n-3)...(n-k+1)/k(k-1)(k-2)...1 = Π(n-k+i)/i
     paths *= (2 * n) - i;
     paths /= i + 1;
   }
