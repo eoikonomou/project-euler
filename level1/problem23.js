@@ -14,4 +14,45 @@ is less than this limit.
 Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 */
 
-function
+function getAbundantNumbers(limit) {
+  const abundantNumbers = [];
+  for (let i = 1; i <= limit; i++) {
+    let properDivisorSum = 1;
+    for (let j = 2; j <= i / 2; j++) {
+      if (i % j === 0) {
+        properDivisorSum += j;
+      }
+    }
+    if (properDivisorSum > i) {
+      abundantNumbers.push(i);
+    }
+  }
+  return abundantNumbers;
+}
+
+function getAbundantNumberSums(abundantNumbers) {
+  const sums = new Set();
+  for (let i = 0; i < abundantNumbers.length; i++) {
+    for (let j = 0; j < abundantNumbers.length; j++) {
+      sums.add(abundantNumbers[i] + abundantNumbers[j]);
+    }
+  }
+  return Array.from(sums);
+}
+
+function sumOfNonAbundantProducts() {
+  const now = Date.now();
+  const limit = 28123;
+  const abundantNumbers = getAbundantNumbers(limit);
+  const abundantNumberSums = getAbundantNumberSums(abundantNumbers);
+  let result = 0
+  for (let number = 1; number < limit; number++) {
+    if (!abundantNumberSums.includes(number)) {
+      result += number;
+    }
+  }
+  console.log(require('../utils/time')(now));
+  return result;
+}
+
+console.log(sumOfNonAbundantProducts()); // 4179871 -> 2.76s
