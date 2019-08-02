@@ -10,7 +10,7 @@ and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
 Find the sum of the digits in the number 100!
 */
 function factorial(num) {
-  if (num === 1) {
+  if ([0, 1].includes(num)) {
     return 1;
   }
   return bigInt(num).multiply(bigInt(factorial(num - 1)));
@@ -24,5 +24,7 @@ function factorialDigitSum(num) {
   return sum;
 }
 
-console.log(factorialDigitSum(10)); // 27
-console.log(factorialDigitSum(100)); // 648
+// console.log(factorialDigitSum(10)); // 27
+// console.log(factorialDigitSum(100)); // 648
+
+module.exports = factorial;

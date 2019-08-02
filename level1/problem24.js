@@ -28,4 +28,6 @@ function getNthPermutation(n, word) {
 }
 
 // console.log(findPermutations('', '012', []));
-console.log(getNthPermutation(1000000, '0123456789')); // 2783915460
+// console.log(getNthPermutation(1000000, '0123456789')); // 2783915460
+
+module.exports = findPermutations;

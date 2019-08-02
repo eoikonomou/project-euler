@@ -28,4 +28,6 @@ function smallestMultiple(start, end) {
 }
 
 // console.log(smallestMultiple(1, 10)); //2520
-console.log(smallestMultiple(1, 20)); // 232792560
+// console.log(smallestMultiple(1, 20)); // 232792560
+
+module.exports = gcd;
