@@ -21,10 +21,10 @@ function findRotations(number) {
     const numberString = number.toString();
     for (let i = 0; i < numberString.length; i++) {
       rotations.add(Number(
-        numberString.substr(i+1, numberString.length) + numberString.substr(0, i + 1)
+        numberString.substr(i + 1, numberString.length) + numberString.substr(0, i + 1)
       ));
     }
-}
+  }
   return Array.from(rotations);
 }
 
