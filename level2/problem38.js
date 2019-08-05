@@ -19,8 +19,8 @@ function findMaxPandigitalMultiples(limit) {
   for (let i = 2; i < limit; i++) {
     let concatenatedNumber = `${i}`;
     for (let j = 2; j < limit; j++) {
-      concatenatedNumber += j;
-      if (concatenatedNumber.length !== new Set(concatenatedNumber.split('')).size || concatenatedNumber.length > 9) {
+      concatenatedNumber = concatenatedNumber.concat(i * j);
+      if (concatenatedNumber.length !== new Set(concatenatedNumber.split('')).size || concatenatedNumber.length > 9 || concatenatedNumber.includes('0')) {
         break;
       } else if (concatenatedNumber.length === 9 && concatenatedNumber > maxPandigitalMultiple) {
         maxPandigitalMultiple = concatenatedNumber;
@@ -31,4 +31,4 @@ function findMaxPandigitalMultiples(limit) {
   return maxPandigitalMultiple;
 }
 
-console.log(findMaxPandigitalMultiples(500000000)); // 987654123 - wrong
+console.log(findMaxPandigitalMultiples(9999)); // 932718654
