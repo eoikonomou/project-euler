@@ -7,6 +7,9 @@ What is the 10 001st prime number?
 */
 
 function isPrime(number) {
+  if (number === 1) {
+    return false;
+  }
   if (number < 4) {
     return true;
   }

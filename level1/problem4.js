@@ -7,6 +7,9 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 */
 
 function isPalindrome(number) {
+  if (typeof number === 'string') {
+    return number === number.split('').reverse().join('');
+  }
   return number.toString() === number.toString().split('').reverse().join('');
 }
 
@@ -28,4 +31,6 @@ function largestPalindromeProduct(digits) {
 }
 
 // console.log(largestPalindromeProduct(2)); // 9009
-console.log(largestPalindromeProduct(3)); //906609
+// console.log(largestPalindromeProduct(3)); //906609
+
+module.exports = isPalindrome;
