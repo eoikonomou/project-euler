@@ -17,17 +17,18 @@ function findPrimeWitMostConsecutivePrimesSum(limit) {
   const primes = [2];
   let prime = 0;
   let consecutivePrimesCount = 0;
-  let number = 3;
   for (let i = 3; i < limit / 2; i += 2) {
-    if (isPrime(number)) {
-      primes.push(number);
+    if (isPrime(i)) {
+      primes.push(i);
     }
   }
-  console.log(primes.length);
   for (let i = 0; i < primes.length; i++) {
     let currentSum = 0;
     let currentCount = 0;
     let currentPrime = 0;
+    if (primes.length - i < consecutivePrimesCount) {
+      break;
+    }
     for (let j = i; j < primes.length; j++) {
       currentSum += primes[j];
       if (currentSum > limit) {
@@ -36,10 +37,10 @@ function findPrimeWitMostConsecutivePrimesSum(limit) {
       if (isPrime(currentSum)) {
         currentCount = j - i + 1;
         currentPrime = currentSum;
-      }
-      if (currentCount > consecutivePrimesCount) {
-        consecutivePrimesCount = currentCount;
-        prime = currentPrime;
+        if (currentCount > consecutivePrimesCount) {
+          consecutivePrimesCount = currentCount;
+          prime = currentPrime;
+        }
       }
     }
   }
@@ -50,4 +51,4 @@ function findPrimeWitMostConsecutivePrimesSum(limit) {
   };
 }
 
-console.log(findPrimeWitMostConsecutivePrimesSum(999999)); // 920291
+console.log(findPrimeWitMostConsecutivePrimesSum(999999)); // 997651
