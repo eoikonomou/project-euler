@@ -17,35 +17,35 @@ Where 0.1(6) means 0.166666..., and has a 1-digit recurring cycle. It can be see
 Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 */
 function getPeriodLength(divisor) {
-  var quotient = [];
-  var previous = {};
-  var remainder = 10,
-    i = 0;
-  while (remainder) {
-    var division = (remainder / divisor) | 0;
-    quotient.push(division);
-    remainder = (remainder - division * divisor) * 10;
-    if (previous[division + " " + remainder]) break;
-    previous[division + " " + remainder] = i;
-    i++;
-  }
-  if (remainder) return i - previous[division + " " + remainder];
-  return 0;
+    const quotient = [];
+    const previous = {};
+    let remainder = 10,
+        i = 0;
+    while (remainder) {
+        var division = (remainder / divisor) | 0;
+        quotient.push(division);
+        remainder = (remainder - division * divisor) * 10;
+        if (previous[division + " " + remainder]) break;
+        previous[division + " " + remainder] = i;
+        i++;
+    }
+    if (remainder) return i - previous[division + " " + remainder];
+    return 0;
 }
 
 function reciprocalCycles(limit) {
-  const now = Date.now();
-  var max = 0,
-    maxD;
-  for (var d = 2; d < limit; d++) {
-    var periodLength = getPeriodLength(d);
-    if (periodLength > max) {
-      max = periodLength;
-      maxD = d;
+    const now = Date.now();
+    let max = 0,
+        maxD;
+    for (let d = 2; d < limit; d++) {
+        const periodLength = getPeriodLength(d);
+        if (periodLength > max) {
+            max = periodLength;
+            maxD = d;
+        }
     }
-  }
-  console.log(require('../utils/time')(now));
-  return maxD;
+    console.log(require('../utils/time')(now));
+    return maxD;
 }
 
 console.log(reciprocalCycles(1000)); // 983
