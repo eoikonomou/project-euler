@@ -9,8 +9,69 @@
  * with the same digit, is part of an eight prime value family.
 */
 
-const nextPrime = require('../level1/problem7').nextPrime;
 const isPrime = require('../level1/problem7').isPrime();
 
-function findMinPrimeWith8PrimeFamily(prime) {
+function generateFamily(numberString, indices) {
+    const family = [];
+    const numArray = numberString.split('');
+    for (let i = indices[0] === 0 ? 1 : 0; i < 10; i++) {
+        const numArrayCopy = [...numArray];
+        indices.forEach(index => {
+            numArrayCopy[index] = i;
+        })
+        family.push(parseInt(numArrayCopy.join('')));
+    }
+    return family.filter(member => isPrime(member));
 }
+
+function findMinWithFamilyByDigits(digits) {
+    const subsets = [];
+    for (let i = 0; i < digits - 2; i++) {
+        for (let j = i + 1; j < digits - 1; j++) {
+            for (let z = j + 1; z < digits; z++) {
+                subsets.push([i, j, z]);
+            }
+        }
+    }
+    const primeNumberCandidates = new Set();
+    for (let i = Math.pow(10, digits - 4); i < Math.pow(10, digits - 3); i++) {
+        if (i % 3 !== 0) {
+            primeNumberCandidates.add(i);
+        }
+    }
+    for (const primeNumber of primeNumberCandidates) {
+        const primeNumberString = primeNumber.toString();
+        for (const subset of subsets) {
+            const primeNumberArray = Array(digits).fill(0);
+            let index = 0;
+            for (let i = 0; i < digits; i++) {
+                if (subset.includes(i)) {
+                    primeNumberArray[i] = '1';
+                } else {
+                    primeNumberArray[i] = primeNumberString[index];
+                    index++;
+                }
+            }
+            if (generateFamily(primeNumberArray.join(''), subset).length > 7) {
+                return primeNumberArray.join('');
+            }
+        }
+    }
+    return null;
+}
+
+function findMinWithFamily() {
+    for (let i = 4; i < 10; i++) {
+        const foundNumber = findMinWithFamilyByDigits(i);
+        if (foundNumber) {
+            return foundNumber;
+        }
+    }
+    return 'Not found';
+}
+
+const now = Date.now();
+
+console.log(findMinWithFamily(6));
+
+console.log(require('../utils/time')(now));
